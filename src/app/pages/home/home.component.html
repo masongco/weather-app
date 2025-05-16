@@ -3,9 +3,9 @@
       <h3>{{ user.name }}</h3>
       <p>https://github.com/{{ user.nickname }}</p>
       <div class="search-bar my-5">
-        <input type="text" class="search-input" placeholder="City">
+        <input type="text" class="search-input" placeholder="City" [(ngModel)]="cityQuery">
         <i class="fas fa-search"></i>
       </div>
-      <a href="#" class="button-primary">Display Weather</a>
+      <a [routerLink]="['/weather', cityQuery]" class="button-primary">Display Weather</a>
     </ng-container>
 </div>

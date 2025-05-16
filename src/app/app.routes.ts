@@ -5,7 +5,7 @@ import { WeatherComponent } from './pages/weather/weather.component';
 
 export const routes: Routes = [
   {
-    path: 'weather',
+    path: 'weather/:city',
     component: WeatherComponent
   },
   {

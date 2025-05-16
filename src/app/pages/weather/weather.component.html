@@ -1,11 +1,8 @@
-<div *ngIf="forecast">
-    <h2>7-Day Forecast ({{ forecast.city.name }})</h2>
-    <ul>
-      <li *ngFor="let day of forecast.list">
-        Date: {{ day.dt * 1000 | date:'mediumDate' }} -
-        Temp: {{ day.temp.day }}°C -
-        Weather: {{ day.weather[0].description }}
-      </li>
-    </ul>
+<div *ngIf="weatherData">
+  <h2>Weather in {{ weatherData.name }}</h2>
+  <p>Date: {{ weatherData.dt * 1000 | date:'MM/dd/yyyy' }}</p>
+  <p>Temperature: {{ weatherData.main.temp }} °C</p>
+  <p>Description: {{ weatherData.weather[0].description }}</p>
+  <p>Pressure: {{ weatherData.main.pressure }}</p>
+  <p>Humidity: {{ weatherData.main.humidity }}</p>
 </div>
-  

@@ -1,25 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { WeatherService } from './weather.service';
 
 @Component({
   selector: 'app-weather',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './weather.component.html',
-  styleUrl: './weather.component.css'
+  styleUrls: ['./weather.component.css'],
 })
 export class WeatherComponent implements OnInit {
-  forecast:any;
+  city = '';
+  weatherData: any;
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
-  ngOnInit(): void {
-    const lat = 14.5995;
-    const lon = 120.9842;
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.city = params.get('city') || '';
+      if (this.city) {
+        this.fetchWeather(this.city);
+      }
+    });
+  }
 
-    this.weatherService.getForecast(lat, lon, 7).subscribe(data => {
-      this.forecast = data;
-      console.log(this.forecast);
+  fetchWeather(city: string) {
+    const apiKey = '0157fa90993f99883b5bf6c4d22cefa3';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    this.http.get(url).subscribe({
+      next: (data) => this.weatherData = data,
+      error: (err) => console.error('Weather API error:', err)
     });
   }
 }
