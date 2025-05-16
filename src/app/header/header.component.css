@@ -1,0 +1,23 @@
+header {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 45px;
+  background-color: #ffffff;
+  height: 75px;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.navbar {
+  height: 75px;
+}
+
+.navbar-brand img {
+  margin-right: 0.5rem;
+}

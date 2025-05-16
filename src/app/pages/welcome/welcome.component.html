@@ -1,0 +1,8 @@
+<div class="welcome-message">
+  <h2 class="text-white mb-5">Hello World!</h2>
+  <p class="message">Welcome to the weather forecast web application. Please login with your Github account to use the application and view the weather in your city.</p>
+  <a class="button-primary button-small" (click)="login()" *ngIf="!(auth.isAuthenticated$ | async)">
+    <i class="fab fa-github mr-2"></i>
+    Login
+  </a>
+</div> 
