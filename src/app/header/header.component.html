@@ -3,19 +3,37 @@
         <a class="navbar-brand" href="/">
             <img src="/static/cloud_icon.png" alt="Weather App" height="40">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse d-flex align-items-center" id="navbarNav">
+        
+        <!-- Desktop Navigation -->
+        <div class="nav d-none d-lg-flex">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item" *ngIf="auth.isAuthenticated$ | async">
                     <a class="nav-link" href="/home">Home</a>
                 </li>
                 <li class="nav-item" *ngIf="auth.isAuthenticated$ | async">
-                    <a class="nav-link" href="/weather">Weather</a>
+                    <a class="nav-link" href="#">Weather</a>
                 </li>
             </ul>
-                <a class="button-primary" *ngIf="auth.isAuthenticated$ | async" (click)="logout()">Logout</a>
+            <a class="button-primary" *ngIf="auth.isAuthenticated$ | async" (click)="logout()">Logout</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="hamburger-menu" (click)="toggleMenu()" [class.active]="isMenuOpen" *ngIf="auth.isAuthenticated$ | async">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
 </header>
+
+<!-- Mobile Sidebar -->
+<div class="sidebar" [class.active]="isMenuOpen" *ngIf="auth.isAuthenticated$ | async">
+    <div class="sidebar-nav">
+        <a href="/home" *ngIf="auth.isAuthenticated$ | async" (click)="closeMenu()">Home</a>
+        <a href="#" *ngIf="auth.isAuthenticated$ | async" (click)="closeMenu()">Weather</a>
+        <a class="button-primary" *ngIf="auth.isAuthenticated$ | async" (click)="logout()">Logout</a>
+    </div>
+</div>
+
+<!-- Overlay -->
+<div class="overlay" [class.active]="isMenuOpen" (click)="closeMenu()" *ngIf="auth.isAuthenticated$ | async"></div>

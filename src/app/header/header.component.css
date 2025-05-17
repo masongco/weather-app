@@ -12,6 +12,7 @@ header {
   display: flex;
   gap: 1rem;
   margin-left: auto;
+  align-items: center;
 }
 
 .navbar {
@@ -20,4 +21,104 @@ header {
 
 .navbar-brand img {
   margin-right: 0.5rem;
+}
+
+.nav a {
+  color: #30B0C7;
+  text-decoration: none;
+  font-size: 18px;
+}
+.button-primary{
+  color: #FFF !important;
+}
+
+/* Mobile Menu Styles */
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.hamburger-menu span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #30B0C7;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 60px;
+}
+
+.sidebar-nav a {
+  color: #30B0C7;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 0;
+}
+.button-primary{
+  color: #FFF !important;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.overlay.active {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    padding: 0 20px;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
 }
